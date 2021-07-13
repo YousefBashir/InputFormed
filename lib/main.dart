@@ -4,8 +4,38 @@ import 'package:lecture12/ui/customer.dart';
 import 'package:lecture12/ui/homePage.dart';
 import 'package:lecture12/ui/merchant.dart';
 
+import 'models/routers/router.dart';
+
 void main() {
   runApp(MaterialApp(
+    navigatorKey: AppRouter.router.navKey,
+    routes: {
+      //'home':(context)=>  HomePage(),
+    },
+    onGenerateRoute: (RouteSettings routeSettings) {
+      String name = routeSettings.name;
+      var argument = routeSettings.arguments;
+      switch (name) {
+        case ('home'):
+          return MaterialPageRoute(builder: (context) {
+            return HomePage();
+          });
+        case ('register'):
+          return MaterialPageRoute(builder: (context) {
+            return MyApp();
+          });
+        default:
+          return MaterialPageRoute(builder: (context) {
+            return Scaffold(
+              backgroundColor: Colors.red,
+              body: Center(child: Text('404 page not found')),
+            );
+          });
+      }
+    },
+    /*onUnknownRoute:(RouteSettings r){
+
+    } ,*/
     home: MyApp(),
   ));
 }
@@ -20,11 +50,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   UserType groupValue;
   User user;
-  setUser(user){
-    this.user= user;
+
+  setUser(user) {
+    this.user = user;
   }
-  GlobalKey <FormState> merchantKey= GlobalKey <FormState>();
-  GlobalKey <FormState> customerKey= GlobalKey <FormState>();
+
+  GlobalKey<FormState> merchantKey = GlobalKey<FormState>();
+  GlobalKey<FormState> customerKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +91,7 @@ class _MyAppState extends State<MyApp> {
                         groupValue: groupValue,
                         onChanged: (v) {
                           this.groupValue = v;
-                          setState(() {
-                          });
+                          setState(() {});
                         }),
                   ),
                   Expanded(
@@ -70,18 +101,16 @@ class _MyAppState extends State<MyApp> {
                         groupValue: groupValue,
                         onChanged: (v) {
                           this.groupValue = v;
-                          setState(() {
-
-                          });
+                          setState(() {});
                         }),
                   ),
                 ],
               ),
             ),
-            this.groupValue== UserType.customer?
-                Customer():
-                Merchant(),
-            SizedBox(height: 8,),
+            this.groupValue == UserType.customer ? Customer() : Merchant(),
+            SizedBox(
+              height: 8,
+            ),
           ],
         ),
       ),

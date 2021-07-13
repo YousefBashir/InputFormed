@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lecture12/models/routers/router.dart';
 import 'package:lecture12/models/user.dart';
 import 'package:lecture12/widgets/customTextFiled.dart';
 
@@ -34,16 +35,15 @@ class _CustomerState extends State<Customer> {
           CustomTextField('email',setEmail),
           CustomTextField('Password' ,setPassword),
           ElevatedButton(
-              onPressed: () {
+              onPressed: () async{
                 if (formKey.currentState.validate()) {
                   formKey.currentState.save();
                   User user = User.customer(
                     email: email,
                     password: password,
                   );
-                  Navigator.of(context).push(MaterialPageRoute(builder:(context){
-                    return HomePage(user);
-                  }));
+                  AppRouter.router.pushFunction(HomePage());
+
                 }
               },
               child: Text('Sing Up as customer')),

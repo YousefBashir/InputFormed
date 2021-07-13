@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lecture12/models/routers/router.dart';
 import 'package:lecture12/models/user.dart';
 import 'package:lecture12/ui/homePage.dart';
 import 'package:lecture12/widgets/customTextFiled.dart';
@@ -97,7 +98,7 @@ class _MerchantState extends State<Merchant> {
                   }).toList()),
             ),
             ElevatedButton(
-                onPressed: () {
+                onPressed: () async{
                   if (formKey.currentState.validate()) {
                     formKey.currentState.save();
                     User user = User.merchant(
@@ -107,9 +108,7 @@ class _MerchantState extends State<Merchant> {
                       shopName: shopName,
                       shopCategory: shopCategory,
                     );
-                    Navigator.of(context).push(MaterialPageRoute(builder:(context){
-                      return HomePage(user);
-                    }));
+                    AppRouter.router.pushFunction(HomePage());
                   }
                 },
                 child: Text('Sing Up as merchant')),

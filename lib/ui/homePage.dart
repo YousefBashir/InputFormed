@@ -5,9 +5,8 @@ import 'package:lecture12/models/user.dart';
 import '../main.dart';
 
 class HomePage extends StatelessWidget {
-  User user;
-
-  HomePage(this.user);
+  //User user;
+  //HomePage(this.user);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
+           /* Container(
               margin: EdgeInsets.all(10),
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
@@ -35,11 +34,11 @@ class HomePage extends StatelessWidget {
                   ' my shopCategory is ${user.shopCategory}, my bio is ${user.bio}',style: TextStyle(
                 fontWeight: FontWeight.bold,fontSize: 20
               ),),
-            ),
+            ),*/
             ElevatedButton(
               child: Text('SIng out'),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).pop('hello its me');
               },
             ),
           ],
