@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lecture12/models/routers/router.dart';
+import 'package:lecture12/models/sharedPrefrencesHelper/SharedPrefernces.dart';
 import 'package:lecture12/models/user.dart';
 import 'package:lecture12/widgets/customTextFiled.dart';
 
@@ -42,7 +43,8 @@ class _CustomerState extends State<Customer> {
                     email: email,
                     password: password,
                   );
-                  AppRouter.router.pushFunction(HomePage());
+                  SpHelper.spHelper.saveUser(user);
+                  AppRouter.router.pushFunction(HomePage(''));
 
                 }
               },

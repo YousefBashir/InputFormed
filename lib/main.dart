@@ -3,10 +3,14 @@ import 'package:lecture12/models/user.dart';
 import 'package:lecture12/ui/customer.dart';
 import 'package:lecture12/ui/homePage.dart';
 import 'package:lecture12/ui/merchant.dart';
+import 'package:lecture12/ui/splachScreen.dart';
 
 import 'models/routers/router.dart';
+import 'models/sharedPrefrencesHelper/SharedPrefernces.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SpHelper.spHelper.initSharedPreferences();
   runApp(MaterialApp(
     navigatorKey: AppRouter.router.navKey,
     routes: {
@@ -18,7 +22,7 @@ void main() {
       switch (name) {
         case ('home'):
           return MaterialPageRoute(builder: (context) {
-            return HomePage();
+            return HomePage('');
           });
         case ('register'):
           return MaterialPageRoute(builder: (context) {
@@ -36,7 +40,7 @@ void main() {
     /*onUnknownRoute:(RouteSettings r){
 
     } ,*/
-    home: MyApp(),
+    home: SplachScreen(),
   ));
 }
 

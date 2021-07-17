@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lecture12/globals.dart';
+import 'package:lecture12/models/sharedPrefrencesHelper/SharedPrefernces.dart';
 import 'package:lecture12/models/user.dart';
 
 import '../main.dart';
 
 class HomePage extends StatelessWidget {
-  //User user;
-  //HomePage(this.user);
+  String name;
+  HomePage(this.name);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-           /* Container(
+            Container(
               margin: EdgeInsets.all(10),
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
@@ -26,19 +28,20 @@ class HomePage extends StatelessWidget {
                 color: Colors.blue.withOpacity(0.3)
               ),
               
-              child: Text(user.userType == UserType.customer
+              child: Text(Globals.globals.user.userType == UserType.customer
                   ? 'Hi i am customer, '
-                  'my email is ${user.email} and my password is ${user.password}'
-                  : 'hi i am merchant my shopName is ${user.shopName},'
-                  ' my shop address is ${user.shopAddress},'
-                  ' my shopCategory is ${user.shopCategory}, my bio is ${user.bio}',style: TextStyle(
+                  'my email is ${Globals.globals.user.email} and my password is ${Globals.globals.user.password}'
+                  : 'hi i am merchant my shopName is ${Globals.globals.user.shopName},'
+                  ' my shop address is ${Globals.globals.user.shopAddress},'
+                  ' my shopCategory is ${Globals.globals.user.shopCategory}, my bio is ${Globals.globals.user.bio}',style: TextStyle(
                 fontWeight: FontWeight.bold,fontSize: 20
               ),),
-            ),*/
+            ),
             ElevatedButton(
               child: Text('SIng out'),
               onPressed: () {
-                Navigator.of(context).pop('hello its me');
+                SpHelper.spHelper.singOut();
+
               },
             ),
           ],
